@@ -1,0 +1,88 @@
+﻿@using WebShoeShop.Common
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/contact_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/contact_responsive.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
+<div class="container contact_container">
+    <div class="row">
+        <div class="col">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Contact</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Map Container -->
+    @*    <div class="row">
+            <div class="col">
+                <div id="google_map">
+                    <div class="map_container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7837.0187154014575!2d106.7937563!3d10.8488098!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527158a0a5b81%3A0xf45c5d34ac580517!2zUGjDom4gaGnhu4d1IFRyxrDhu51uZyDEkOG6oWkgaOG7jWMgR1RWVCB04bqhaSBUcC4gSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1698739391663!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <!-- Contact Us -->
+
+    <div class="row">
+
+        <div class="col-lg-6 contact_col">
+            <div class="contact_contents">
+                <h1>Liên hệ</h1>
+                <div>
+                    <p>Địa chỉ: @SettingHelper.GetValue("SettingAddress")</p>
+                    <p>Hotline: @SettingHelper.GetValue("SettingHotline")</p>
+                    <p>Email: @SettingHelper.GetValue("SettingEmail")</p>
+                    <p>Giờ mở cửa: 9:00~21:00 T2-T7</p>
+                    
+                </div>
+            </div>
+
+            <!-- Follow Us -->
+
+            <div class="follow_us_contents">
+                <h2>Kết nối với chúng tôi</h2>
+                <ul class="social d-flex flex-row">
+                    <li><a href="@SettingHelper.GetValue("SettingFacebook")" style="background-color: #3a61c9"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="@SettingHelper.GetValue("SettingYoutube")" style="background-color: #f64141"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                    <li><a href="@SettingHelper.GetValue("SettingZalo")" style="background-image: url('D:\Dowload\images.png');"><i class="" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 get_in_touch_col">
+            <div class="get_in_touch_contents">
+                <h1>Get In Touch With Us!</h1>
+                <p>Để được hỗ trợ, vui lòng nhập thông tin bên dưới và ấn Gửi. Team Double 2T-2Q sẽ trả lời quí khách qua email trong vòng 24h.</p>
+                <form action="post">
+                    <div>
+                        <input id="input_name" class="form_input input_name input_ph" type="text" name="name" placeholder="Tên" required="required" data-error="Name is required.">
+                        <input id="input_email" class="form_input input_email input_ph" type="email" name="email" placeholder="Email" required="required" data-error="Valid email is required.">
+                        <input id="input_website" class="form_input input_website input_ph" type="url" name="name" placeholder="Website" required="required" data-error="Name is required.">
+                        <textarea id="input_message" class="input_ph input_message" name="message" placeholder="Nội dung" rows="3" required data-error="Please, write us a message."></textarea>
+                    </div>
+                    <div>
+                        <button id="review_submit" type="submit" class="btn btn-success" value="Submit">Gửi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/assets/js/contact_custom.js"></script>
+}
