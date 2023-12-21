@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebShoeShop.Models.EF.Order>
+<style>
+    .table-bordered {
+        border-collapse: collapse;
+    }
+
+        .table-bordered td {
+            border: 1px solid black;
+        }
+</style>
+@if (Model != null)
+{
+    <h2>Lịch sử mua hàng</h2>
+    var i = 1;
+    <table class="table table-bordered" style="border:2px solid black;">
+        <thead>
+            <tr>
+                <td>STT</td>
+                <td>Mã ĐH</td>
+                <td>Thông tin sản phẩm</td>
+                <td>Tổng tiền</td>
+                <td>Địa chỉ nhận hàng</td>
+                <td>Thời gian</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@item.Code</td>
+                    <td>
+                        <table>
+                            <!-- Bảng bên trong để hiển thị thông tin OrderDetail -->
+                            <thead>
+                                <tr>
+                                    <td>Tên sản phẩm</td>
+                                    <td>Số lượng</td>
+                                    <td>Size</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var orderDetail in item.OrderDetails)
+                                {
+                                    <tr>
+                                        <td>@orderDetail.Product.Title</td>
+                                        <td>@orderDetail.Quantity</td>
+
+                                        <td>@orderDetail.Size</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>@item.TotalAmount</td>
+                    <td>@item.Address</td>
+                    <td>@item.CreatedDate</td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+    <a href=""></a>
+}
+

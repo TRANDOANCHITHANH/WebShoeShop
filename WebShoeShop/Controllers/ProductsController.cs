@@ -18,7 +18,7 @@ namespace WebShoeShop.Controllers
             return View(items);
         }
 
-        public ActionResult Detail(string alias, int id)
+        public ActionResult Detail(string alias, int? id)
         {
             var item = db.Products.Find(id);
             if (item != null)

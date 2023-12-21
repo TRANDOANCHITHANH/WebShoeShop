@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebShoeShop.Models;
@@ -15,6 +16,7 @@ namespace WebShoeShop.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -114,7 +116,18 @@ namespace WebShoeShop.Controllers
                     return View(model);
             }
         }
-       
+        public ActionResult HistoryOrder()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var user = userManager.FindByName(User.Identity.Name);
+                var item = db.Orders.Where(x => x.CustomerId == user.Id).OrderByDescending(x => x.Id).ToList();
+                return PartialView(item);
+            }
+            return PartialView();
+        }
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]

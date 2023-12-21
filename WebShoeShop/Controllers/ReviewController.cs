@@ -57,20 +57,7 @@ namespace WebShoeShop.Controllers
                 return Json(new {Success = true });
             }
             return Json(new { Success = false });
-        }
-        public ActionResult HistoryOrder()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-                var userManager = new UserManager<ApplicationUser>(userStore);
-                var user = userManager.FindByName(User.Identity.Name);
-                var item = db.Orders.Where(x => x.CustomerId == user.Id).OrderByDescending(x => x.Id).ToList();
-                return PartialView(item);
-            }
-            return PartialView();
-        }
-        
+        }        
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

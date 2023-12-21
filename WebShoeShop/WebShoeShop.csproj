@@ -229,7 +229,6 @@
     <Compile Include="Models\CommonAbstract.cs" />
     <Compile Include="Models\Common\Filter.cs" />
     <Compile Include="Models\Common\ThongKeTruyCap.cs" />
-    <Compile Include="Models\EF\Adv.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\EF\Contact.cs" />
     <Compile Include="Models\EF\News.cs" />
@@ -3460,8 +3459,8 @@
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Review\_load_review.cshtml" />
     <Content Include="Views\Wishlist\Index.cshtml" />
-    <Content Include="Views\Review\HistoryOrder.cshtml" />
     <Content Include="Views\Products\Partial_ProductReleated.cshtml" />
+    <Content Include="Views\Account\HistoryOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
