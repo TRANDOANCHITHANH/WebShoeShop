@@ -32,12 +32,13 @@
                 </td>
                 <td>@item.CategoryName</td>
                 <td>@Common.FormatNumber(item.Price, 0)</td>
-                <td><input type="number" class="form-control" id="Quantity_@item.ProductId" value="@item.Quantity" /></td>
-                <td><input type="number" class="form-control" id="Size_@item.ProductId" value="@item.Size"/></td>
+                <td><input type="number" class="form-control" id="Quantity_@item.ProductId" value="@item.Quantity" min="0" /></td>
+                <td><input type="number" class="form-control" id="Size_@item.ProductId" value="@item.Size" min="0"/></td>
                 <th>@Common.FormatNumber(item.TotalPrice, 2)</th>
                 <td>
                     <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-danger btnDelete">Xóa</a>
-                    <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-success btnUpdate">Cập nhật</a>
+                    <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-success btnUpdate" onclick="updateProduct(this)">Cập nhật</a>
+                    <div id="error-message" style="color: red; display: none;"></div>
                 </td>
             </tr>
             i++;
@@ -61,3 +62,18 @@
     }
 
 </table>
+
+<script>
+    function updateProduct(element) {
+        var inputSizeId = "Size_" + element.dataset.id; // Lấy ID của input dựa trên thuộc tính data-id của nút
+        var inputQuantityId = "Quantity_" + element.dataset.id;
+        var inputValue1 = parseFloat(document.getElementById(inputSizeId).value); // Lấy giá trị của input và chuyển đổi sang kiểu số
+        var inputValue2 = parseFloat(document.getElementById(inputQuantityId).value)
+        if (inputValue1 < 0 || inputValue2 <0) {
+            alert("Giá trị không hợp lệ! Vui lòng nhập giá trị không âm.");
+            return; // Dừng lại nếu giá trị âm và hiển thị thông báo lỗi
+        }
+
+        // Nếu giá trị hợp lệ, tiếp tục thực hiện cập nhật hoặc xử lý khác tại đây
+    }
+</script>
