@@ -567,7 +567,7 @@ section
 		transition: color 0.3s ease;
 	}
 		.navbar_menu li a:hover {
-			color: #ff0000;
+			color: #1853d8;
 		}
 
 .navbar_user
@@ -811,9 +811,9 @@ section
 	text-transform: uppercase;
 }
 	.logo_container a span {
-		color: #fe4c50;
-		animation: blinker .7s infinite;
-		
+		color: #0015e9;
+		/*		animation: blinker .7s infinite;
+*/
 	}
 @keyframes blinker {
 	50% {

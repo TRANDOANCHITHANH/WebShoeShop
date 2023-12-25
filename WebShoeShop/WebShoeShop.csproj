@@ -308,6 +308,7 @@
     <Content Include="Content\assets\dist\js\pages\dashboard2.js" />
     <Content Include="Content\assets\dist\js\pages\dashboard3.js" />
     <Content Include="Content\assets\images\aa3.png" />
+    <Content Include="Content\assets\images\Annual Sportsf2.png" />
     <Content Include="Content\assets\images\banner2.png" />
     <Content Include="Content\assets\images\banner_1.jpg" />
     <Content Include="Content\assets\images\banner_2.jpg" />
@@ -323,6 +324,7 @@
     <Content Include="Content\assets\images\iconlogo.png" />
     <Content Include="Content\assets\images\image27-removebg.png" />
     <Content Include="Content\assets\images\image5.jpg" />
+    <Content Include="Content\assets\images\logoshop.png" />
     <Content Include="Content\assets\images\logostore.png" />
     <Content Include="Content\assets\images\map_marker.png" />
     <Content Include="Content\assets\images\news2.jpg" />

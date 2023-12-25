@@ -1,4 +1,4 @@
-﻿@using WebShoeShop.Common
+﻿@model WebShoeShop.Models.EF.Contact
 @{
     ViewBag.Title = "Index";
 }
@@ -40,42 +40,81 @@
             <div class="contact_contents">
                 <h1>Liên hệ</h1>
                 <div>
-                    <p>Địa chỉ: @SettingHelper.GetValue("SettingAddress")</p>
-                    <p>Hotline: @SettingHelper.GetValue("SettingHotline")</p>
-                    <p>Email: @SettingHelper.GetValue("SettingEmail")</p>
-                    <p>Giờ mở cửa: 9:00~21:00 T2-T7</p>
-                    
+                    <p>Double 2T-2Q Sneaker chuyên kinh doanh các mặt hàng giày dép chính hãng từ các thương hiệu nổi tiếng thế giới như Nike Adidas MLB Domba Converse Vans Puma... nhập trực tiếp US UK JP KR. Cam kết sản phẩm chính hãng.</p>
+                    <br />
+                    <p>Địa chỉ: @WebShoeShop.Common.SettingHelper.GetValue("SettingAddress")</p>
+                    <p>Hotline: @WebShoeShop.Common.SettingHelper.GetValue("SettingHotline")</p>
+                    <p>Email: @WebShoeShop.Common.SettingHelper.GetValue("SettingEmail")</p>
+                </div>
+                <div>
+                    <p>Giờ mở cửa: 9h-21h T2-T7 (Trừ các ngày Lễ, Tết)</p>
                 </div>
             </div>
 
             <!-- Follow Us -->
 
             <div class="follow_us_contents">
-                <h2>Kết nối với chúng tôi</h2>
+                <h1>Follow Us</h1>
                 <ul class="social d-flex flex-row">
-                    <li><a href="@SettingHelper.GetValue("SettingFacebook")" style="background-color: #3a61c9"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="@SettingHelper.GetValue("SettingYoutube")" style="background-color: #f64141"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                    <li><a href="@SettingHelper.GetValue("SettingZalo")" style="background-image: url('D:\Dowload\images.png');"><i class="" aria-hidden="true"></i></a></li>
+                    <li><a href="@WebShoeShop.Common.SettingHelper.GetValue("SettingFacebook")" style="background-color: #3a61c9"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="@WebShoeShop.Common.SettingHelper.GetValue("SettingYoutube")" style="background-color: #f00000"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                    <li><a href="@WebShoeShop.Common.SettingHelper.GetValue("SettingZalo")" style="background-color: #ff00d3"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
 
         </div>
-      
+
         <div class="col-lg-6 get_in_touch_col">
             <div class="get_in_touch_contents">
-                <h1>Get In Touch With Us!</h1>
-                <p>Để được hỗ trợ, vui lòng nhập thông tin bên dưới và ấn Gửi. Team Double 2T-2Q sẽ trả lời quý khách qua email trong vòng 24h.</p>
-                <form action="post">
-                    <div>
-                        <input id="input_name" class="form_input input_name input_ph" type="text" name="name" placeholder="Tên" required="required" data-error="Name is required.">
-                        <input id="input_email" class="form_input input_email input_ph" type="email" name="email" placeholder="Email" required="required" data-error="Valid email is required.">
-                        <input id="input_website" class="form_input input_website input_ph" type="url" name="name" placeholder="Website" required="required" data-error="Name is required.">
-                        <textarea id="input_message" class="input_ph input_message" name="message" placeholder="Nội dung" rows="3" required data-error="Please, write us a message."></textarea>
-                    </div>
-                    <div>
-                        <button id="review_submit" type="submit" class="btn btn-outline-success message_submit_btn" value="Submit">Gửi</button>
-                    </div>
-                </form>
+                <h3>Gửi thắc mắc cho chúng tôi</h3>
+                
+                @using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Contact</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Name">Họ tên</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Email">Email</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Message">Nội dung</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Email">Ngày tạo</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
             </div>
         </div>
 

@@ -19,9 +19,8 @@ namespace WebShoeShop.Models.EF
         public string Name { get; set; }
         [StringLength(150, ErrorMessage = "Không được vượt quá 150 ký tự")]
         public string Email { get; set; }
-        public string Website { get; set; }
         [StringLength(4000)]
         public string Message { get; set; }
-        public bool IsRead { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }
