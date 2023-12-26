@@ -14,6 +14,7 @@ namespace WebShoeShop.Models.EF
         public Product()
         {
             this.ProductImage = new HashSet<ProductImage>();
+            this.ProductSize = new HashSet<ProductSize>();
             this.OrderDetails = new HashSet<OrderDetail>();
             this.Reviews = new HashSet<ReviewProduct>();
             this.Wishlists = new HashSet<Wishlist>();
@@ -58,6 +59,7 @@ namespace WebShoeShop.Models.EF
 
         public virtual ProductCategory ProductCategory { get; set; }
         public virtual ICollection<ProductImage> ProductImage { get; set; }
+        public virtual ICollection<ProductSize> ProductSize { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<ReviewProduct> Reviews { get; set; }
         public virtual ICollection<Wishlist> Wishlists { get; set; }

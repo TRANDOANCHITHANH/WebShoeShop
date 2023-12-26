@@ -84,7 +84,15 @@
                         <li><i class="fa fa-star" aria-hidden="true"></i></li>
                         <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                     </ul>
-
+                    <div class="product_size d-flex flex-column flex-sm-row align-items-sm-center">
+                        <span>Size: </span>
+                        <ul>
+                            @foreach (var items in Model.ProductSize)
+                            {
+                                <li id="size_value">@items.Size</li>
+                            }
+                        </ul>
+                    </div>
                     <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                         <span>Số lượng:</span>
                         <div class="quantity_selector">
@@ -161,4 +169,19 @@
 }
 @section scripts{
     <script src="~/Content/assets/js/single_custom.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sizeOptions = document.querySelectorAll(".product_size ul li");
+
+            sizeOptions.forEach(function (option) {
+                option.addEventListener("click", function () {
+                    sizeOptions.forEach(function (option) {
+                        option.classList.remove("active");
+                    });
+
+                    this.classList.add("active");
+                });
+            });
+        });
+    </script>
 }

@@ -33,7 +33,7 @@
                 <td>@item.CategoryName</td>
                 <td>@Common.FormatNumber(item.Price, 0)</td>
                 <td><input type="number" class="form-control" id="Quantity_@item.ProductId" value="@item.Quantity" min="0" /></td>
-                <td><input type="number" class="form-control" id="Size_@item.ProductId" value="@item.Size" min="0"/></td>
+                <td><input type="number" class="form-control" id="Size_@item.ProductId" value="@item.Size" min="35" max="45"/></td>
                 <th>@Common.FormatNumber(item.TotalPrice, 2)</th>
                 <td>
                     <a href="#" data-id="@item.ProductId" class="btn btn-sm btn-danger btnDelete">Xóa</a>
@@ -69,8 +69,8 @@
         var inputQuantityId = "Quantity_" + element.dataset.id;
         var inputValue1 = parseFloat(document.getElementById(inputSizeId).value); // Lấy giá trị của input và chuyển đổi sang kiểu số
         var inputValue2 = parseFloat(document.getElementById(inputQuantityId).value)
-        if (inputValue1 < 0 || inputValue2 <0) {
-            alert("Giá trị không hợp lệ! Vui lòng nhập giá trị không âm.");
+        if (inputValue1 <= 0 || inputValue2 <= 0) {
+            alert("Giá trị không hợp lệ! Vui lòng nhập giá trị lớn hơn 0.");
             return; // Dừng lại nếu giá trị âm và hiển thị thông báo lỗi
         }
 

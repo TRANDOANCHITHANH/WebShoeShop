@@ -48,7 +48,7 @@ namespace WebShoeShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Product model, List<string> Images, List<int> rDefault)
+        public ActionResult Add(Product model, List<string> Images, List<int> rDefault,List<int> Sizes)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +65,11 @@ namespace WebShoeShop.Areas.Admin.Controllers
                                 Image = Images[i],
                                 IsDefault = true
                             });
+                            model.ProductSize.Add(new ProductSize
+                            {
+                                ProductId=model.Id,
+                                Size = Sizes[i],
+                            } );
                         }
                         else
                         {
@@ -73,6 +78,11 @@ namespace WebShoeShop.Areas.Admin.Controllers
                                 ProductId = model.Id,
                                 Image = Images[i],
                                 IsDefault = false
+                            });
+                            model.ProductSize.Add(new ProductSize
+                            {
+                                ProductId = model.Id,
+                                Size = Sizes[i],
                             });
                         }
                     }

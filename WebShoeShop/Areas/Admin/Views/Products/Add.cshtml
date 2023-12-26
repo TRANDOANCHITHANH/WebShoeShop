@@ -4,7 +4,38 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .product_size {
+        margin-top: 27px;
+    }
 
+        .product_size ul {
+            display: inline-block;
+            margin-left: 26px;
+            margin-top: 5px;
+        }
+
+            .product_size ul li {
+                display: inline-block;
+                /*width: 12px;
+        height: 12px;*/
+                border-radius: 0;
+                margin-right: 5px;
+                cursor: pointer;
+                border: 1px solid #000;
+                padding: 5px;
+                transition: transform 0.3s ease-in-out;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+
+                .product_size ul li:hover {
+                    background-color: #bebbbb;
+                }
+
+                .product_size ul li.active {
+                    background-color: #bebbbb;
+                }
+</style>
 
 @section naviheader{
     <!-- Left navbar links -->
@@ -79,8 +110,8 @@
                                             @Html.ValidationMessageFor(x => x.Alias, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">SKU</label>
-                                            @Html.TextBoxFor(x => x.ProductCode, new { @class = "form-control", @placeholder = "Mã phẩm" })
+                                            <label for="exampleInputEmail1">Mã sản phâ</label>
+                                            @Html.TextBoxFor(x => x.ProductCode, new { @class = "form-control", @placeholder = "Mã sản phẩm" })
                                             @Html.ValidationMessageFor(x => x.ProductCode, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
@@ -93,10 +124,25 @@
                                             @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @placeholder = "Mô tả sản phẩm" })
                                             @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
                                         </div>
+
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Chi tiết sản phẩm</label>
                                             @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail" })
                                             @Html.ValidationMessageFor(x => x.Detail, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Size</label>
+                                            <div class="product_size">
+                                                <ul>
+                                                    <li>35</li>
+                                                    <li>36</li>
+                                                    <li>37</li>
+                                                    <li>38</li>
+                                                    <li>39</li>
+                                                    <li>40</li>
+                                                    <li>41</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-3">
@@ -295,19 +341,19 @@
             var str = "";
             if (currentId == 1) {
                 str += `<tr id="trow_${currentId}">
-                            <td class="text-center">${currentId}</td>
-                            <td class="text-center"><img width="80" src="${url}" /> <input type='hidden' value="${url}" name="Images"/></td>
-                            <td class="text-center"><input type="radio" name="rDefault" value="${currentId}" checked="checked"/></td>
-                            <td class="text-center"><a href="#" data-id="${currentId}" class="btn btn-sm btn-danger btnXoaAnh">Xóa</a></td>
-                            </tr>`;
+                                <td class="text-center">${currentId}</td>
+                                <td class="text-center"><img width="80" src="${url}" /> <input type='hidden' value="${url}" name="Images"/></td>
+                                <td class="text-center"><input type="radio" name="rDefault" value="${currentId}" checked="checked"/></td>
+                                <td class="text-center"><a href="#" data-id="${currentId}" class="btn btn-sm btn-danger btnXoaAnh">Xóa</a></td>
+                                </tr>`;
             }
             else {
                 str += `<tr id="trow_${currentId}">
-                            <td class="text-center">${currentId}</td>
-                            <td class="text-center"><img width="80" src="${url}" /> <input type='hidden' value="${url}" name="Images"/></td>
-                            <td class="text-center"><input type="radio" name="rDefault" value="${currentId}"/></td>
-                            <td class="text-center"><a href="#" data-id="${currentId}" class="btn btn-sm btn-danger btnXoaAnh">Xóa</a></td>
-                            </tr>`;
+                                <td class="text-center">${currentId}</td>
+                                <td class="text-center"><img width="80" src="${url}" /> <input type='hidden' value="${url}" name="Images"/></td>
+                                <td class="text-center"><input type="radio" name="rDefault" value="${currentId}"/></td>
+                                <td class="text-center"><a href="#" data-id="${currentId}" class="btn btn-sm btn-danger btnXoaAnh">Xóa</a></td>
+                                </tr>`;
             }
             $('#tbHtml').append(str);
             $('#tCurrentId').val(currentId);
@@ -325,7 +371,28 @@
             //            }
             //        });
             //    });
-            }
+        }
 
+    </script>
+    <script>
+       document.addEventListener("DOMContentLoaded", function() {
+  const sizeOptions = document.querySelectorAll(".product_size ul li");
+  const selectedSizes = [];
+
+  sizeOptions.forEach(function(option) {
+    option.addEventListener("click", function() {
+      this.classList.toggle("active");
+      
+      const size = this.textContent;
+      if (selectedSizes.includes(size)) {
+        selectedSizes.splice(selectedSizes.indexOf(size), 1);
+      } else {
+        selectedSizes.push(size);
+      }
+      
+      console.log(selectedSizes);
+    });
+  });
+});
     </script>
 }

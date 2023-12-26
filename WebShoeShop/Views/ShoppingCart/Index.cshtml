@@ -34,7 +34,7 @@
                        @* <div class="text-left"><a href="/san-pham"><i class="fa fa-arrow-left" aria-hidden="true"></i>Trở về trang sản phẩm</a></div>*@
                         <div class="text-right">
                             <a href="#" class="btn btn-danger btnDeleteAll">Xóa</a>
-                            <a href="/thanh-toan" class="btn btn-success">Thanh toán</a>
+                            <a href="/thanh-toan" class="btn btn-success btnpayment">Thanh toán</a>
                         </div>
                     }
 
@@ -46,4 +46,19 @@
 
 @section scripts{
     <script src="~/Content/assets/js/categories_custom.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+  const paymentButton = document.querySelector(".btnpayment");
+
+            paymentButton.addEventListener("click", function (e) {
+                const sizeInput = document.querySelector('input[id^="Quantity_"]');
+    const sizeValue = parseInt(sizeInput.value);
+
+    if (sizeValue === 0) {
+      e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a> khi số lượng bằng 0
+      alert("Lỗi: Vui lòng chọn số lượng hợp lệ!");
+    }
+  });
+});
+    </script>
 }
