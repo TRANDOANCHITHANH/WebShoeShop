@@ -143,7 +143,14 @@ namespace WebShoeShop.Controllers
                        Size = x.Size
                     }));
                     order.Quantity = cart.GetTotalQuantity();
-                    order.TotalAmount = cart.Items.Sum(x => (x.Price * x.Quantity));
+                    if (req.TypeShip == 1)
+                    {
+                        order.TotalAmount = cart.Items.Sum(x => (x.Price * x.Quantity));
+                    }
+                    else if(req.TypeShip == 2)
+                    {
+                        order.TotalAmount = cart.Items.Sum(x => (x.Price * x.Quantity) + 70000);
+                    }
                     order.TypePayment = req.TypePayment;
                     order.CreatedDate = DateTime.Now;
                     order.ModifiedDate = DateTime.Now;
@@ -176,7 +183,13 @@ namespace WebShoeShop.Controllers
                         }
                     }
                      db.SaveChanges();
-                    TongTien = thanhtien;
+                    if (req.TypeShip == 1)
+                    {
+                        TongTien = thanhtien;
+                    }else if (req.TypeShip == 2)
+                    {
+                        TongTien = thanhtien + 70000;
+                    }
                     string contentCustomer = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send2.html"));
                     contentCustomer = contentCustomer.Replace("{{MaDon}}", order.Code);
                     contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
@@ -186,6 +199,14 @@ namespace WebShoeShop.Controllers
                     contentCustomer = contentCustomer.Replace("{{Email}}", req.Email);
                     contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", order.Address);
                     contentCustomer = contentCustomer.Replace("{{ThanhTien}}", WebShoeShop.Common.Common.FormatNumber(thanhtien, 0));
+                    if (req.TypeShip == 1)
+                    {
+                        contentCustomer = contentCustomer.Replace("{{PhiVanChuyen}}", "0");
+                    }
+                    else if (req.TypeShip == 2)
+                    {
+                        contentCustomer = contentCustomer.Replace("{{PhiVanChuyen}}", WebShoeShop.Common.Common.FormatNumber(70000, 0));
+                    }
                     contentCustomer = contentCustomer.Replace("{{TongTien}}", WebShoeShop.Common.Common.FormatNumber(TongTien, 0));
                     WebShoeShop.Common.Common.SendMail("Double 2T-2Q Store", "Đơn hàng #" + order.Code, contentCustomer.ToString(), req.Email);
 
@@ -198,6 +219,14 @@ namespace WebShoeShop.Controllers
                     contentAdmin = contentAdmin.Replace("{{Email}}", req.Email);
                     contentAdmin = contentAdmin.Replace("{{DiaChiNhanHang}}", order.Address);
                     contentAdmin = contentAdmin.Replace("{{ThanhTien}}", WebShoeShop.Common.Common.FormatNumber(thanhtien, 0));
+                    if (req.TypeShip == 1)
+                    {
+                        contentAdmin = contentAdmin.Replace("{{PhiVanChuyen}}", "0");
+                    }
+                    else if (req.TypeShip == 2)
+                    {
+                        contentAdmin = contentAdmin.Replace("{{PhiVanChuyen}}", WebShoeShop.Common.Common.FormatNumber(70000,0));
+                    }
                     contentAdmin = contentAdmin.Replace("{{TongTien}}", WebShoeShop.Common.Common.FormatNumber(TongTien, 0));
                     WebShoeShop.Common.Common.SendMail("Double 2T-2Q Store", "Đơn hàng mới #" + order.Code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
                     cart.ClearCart();
