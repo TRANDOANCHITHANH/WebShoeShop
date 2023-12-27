@@ -51,10 +51,11 @@
   const paymentButton = document.querySelector(".btnpayment");
 
             paymentButton.addEventListener("click", function (e) {
-                const sizeInput = document.querySelector('input[id^="Quantity_"]');
-    const sizeValue = parseInt(sizeInput.value);
-
-    if (sizeValue === 0) {
+                const quantityInput = document.querySelector('input[id^="Quantity_"]');
+                const sizeInput = document.querySelector('input[id^="Size_"]');
+                const quantityValue = parseInt(quantityInput.value);
+                const sizeValue = parseInt(sizeInput.value);
+                if (quantityValue === 0 || sizeValue ===0) {
       e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a> khi số lượng bằng 0
       alert("Lỗi: Vui lòng chọn số lượng hợp lệ!");
     }

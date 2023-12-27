@@ -10,7 +10,7 @@
         <div class="col">
 
             <!-- Breadcrumbs -->
-
+            <h2 class="text-center" style="margin-top:30px;font-weight:bold;">Liên hệ</h2>
             <div class="breadcrumbs d-flex flex-row align-items-center">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -67,13 +67,11 @@
         <div class="col-lg-6 get_in_touch_col">
             <div class="get_in_touch_contents">
                 <h3>Gửi thắc mắc cho chúng tôi</h3>
-                
                 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Contact</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -100,13 +98,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+       @* <div class="form-group">
             <label class="control-label col-md-2" for="Email">Ngày tạo</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

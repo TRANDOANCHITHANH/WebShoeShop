@@ -326,6 +326,7 @@
     <Content Include="Content\assets\images\image27-removebg.png" />
     <Content Include="Content\assets\images\image5.jpg" />
     <Content Include="Content\assets\images\logoshop.png" />
+    <Content Include="Content\assets\images\logoshop_visible.png" />
     <Content Include="Content\assets\images\logostore.png" />
     <Content Include="Content\assets\images\map_marker.png" />
     <Content Include="Content\assets\images\news2.jpg" />

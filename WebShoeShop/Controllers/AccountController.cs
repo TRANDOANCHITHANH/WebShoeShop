@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -9,7 +10,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using PagedList;
 using WebShoeShop.Models;
+using WebShoeShop.Models.EF;
 
 namespace WebShoeShop.Controllers
 {
@@ -116,15 +119,25 @@ namespace WebShoeShop.Controllers
                     return View(model);
             }
         }
-        public ActionResult HistoryOrder()
+        public ActionResult HistoryOrder(int? page)
         {
+             var pageSize = 5;
+            if (page == null)
+            {
+                page = 1;
+            }
             if (User.Identity.IsAuthenticated)
             {
                 var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
                 var userManager = new UserManager<ApplicationUser>(userStore);
                 var user = userManager.FindByName(User.Identity.Name);
-                var item = db.Orders.Where(x => x.CustomerId == user.Id).OrderByDescending(x => x.Id).ToList();
-                return PartialView(item);
+                IEnumerable<Order> items = db.Orders.Where(x => x.CustomerId == user.Id).OrderByDescending(x => x.Id).ToList();
+                
+                var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+                items = items.ToPagedList(pageIndex, pageSize);
+                ViewBag.PageSize = pageSize;
+                ViewBag.Page = page;
+                return PartialView(items);
             }
             return PartialView();
         }

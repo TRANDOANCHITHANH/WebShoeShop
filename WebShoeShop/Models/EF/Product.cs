@@ -49,7 +49,7 @@ namespace WebShoeShop.Models.EF
         public bool IsHot { get; set; }
         public bool IsActive { get; set; }
         public int ProductCategoryId { get; set; }
-        public int? Size { get; set; }
+        /*public int? Size { get; set; }*/
         [StringLength(250)]
         public string SeoTitle { get; set; }
         [StringLength(500)]

@@ -27,7 +27,7 @@
         }
     </script>
     @Html.AntiForgeryToken()
-    <h3>Thông tin khách hàng</h3>
+    <h3>Thông tin giao hàng</h3>
     if (!Request.IsAuthenticated)
     {
         <div class="form-group">
@@ -87,3 +87,20 @@
     </div>
 
 }
+
+<script>
+    document.querySelector('select[name="TypeShip"]').addEventListener('change', function() {
+        var totalElement = document.getElementById('total');
+        var costShipElement = document.getElementById('cost');
+    var tongtien = parseFloat(totalElement.textContent.replace(/\D/g, '')); // Lấy giá trị số từ chuỗi trong <td>
+        var phigiaohang = 70000; 
+    if (this.value === '2') { // Phí giao hàng khi chọn option 2
+        var newTotal = tongtien + phigiaohang;
+        totalElement.textContent = newTotal; // Cập nhật giá trị trong <td>
+        costShipElement.textContent = phigiaohang;
+    } else {
+        totalElement.textContent = tongtien - phigiaohang;// Giữ nguyên giá trị ban đầu
+        costShipElement.textContent = 0;
+    }
+});
+</script>

@@ -89,7 +89,7 @@
                         <ul>
                             @foreach (var items in Model.ProductSize)
                             {
-                                <li id="size_value">@items.Size</li>
+                                <li class="size-item" data-size="@items.Size">@items.Size</li>
                             }
                         </ul>
                     </div>

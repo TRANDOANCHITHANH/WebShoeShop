@@ -40,36 +40,49 @@
                         <p class="form-control">@Model.CustomerName</p>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Tổng tiền</label>
-                        <p class="form-control">@WebShoeShop.Common.Common.FormatNumber(Model.TotalAmount, 0) đ</p>
-                    </div>
-                </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Số điện thoại</label>
                         <p class="form-control">@Model.Phone</p>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Ngày tạo</label>
                         <p class="form-control">@Model.CreatedDate.ToString("dd/MM/yyyy")</p>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Phí giao hàng</label>
+                        @if (Model.TypeShip == 1)
+                        {
+                            <p class="form-control">@WebShoeShop.Common.Common.FormatNumber(0,0) đ</p>
+                        }
+                        else if (Model.TypeShip == 2)
+                        {
+                    <p class="form-control">@WebShoeShop.Common.Common.FormatNumber(70000,0) đ</p>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tổng tiền</label>
+                        <p class="form-control">@WebShoeShop.Common.Common.FormatNumber(Model.TotalAmount, 0) đ</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Email</label>
                         <p class="form-control">@Model.Email</p>
                     </div>
                 </div>
-            </div>
-            <div class="row">
+ 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Trạng thái</label>
@@ -79,7 +92,7 @@
                 <div class="col-md-6">
 
                 </div>
-            </div>
+     </div>
             <div class="row">
                 <div class="col-12">
                     <h2>Danh sách sản phẩm</h2>

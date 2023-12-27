@@ -68,7 +68,7 @@
                                     <td>@item.CustomerName</td>
                                     <td>@item.Phone</td>
                                     <td>@WebShoeShop.Common.Common.FormatNumber(item.TotalAmount, 0)</td>
-                                    <td>@(item.TypePayment==1?"Chờ thành toán":"Đã thanh toán")</td>
+                                    <td>@(item.TypePayment==1?"Chờ thanh toán":"Đã thanh toán")</td>
                                     <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
                                     <td>
                                         <a href="/admin/order/view/@item.Id" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>

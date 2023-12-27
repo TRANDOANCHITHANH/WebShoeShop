@@ -152,6 +152,7 @@ namespace WebShoeShop.Controllers
                         order.TotalAmount = cart.Items.Sum(x => (x.Price * x.Quantity) + 70000);
                     }
                     order.TypePayment = req.TypePayment;
+                    order.TypeShip = req.TypeShip;
                     order.CreatedDate = DateTime.Now;
                     order.ModifiedDate = DateTime.Now;
                     order.CreatedBy = req.Phone;

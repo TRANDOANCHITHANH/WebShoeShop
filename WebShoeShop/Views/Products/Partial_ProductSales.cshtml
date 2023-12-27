@@ -1,17 +1,39 @@
 ﻿@model IEnumerable<WebShoeShop.Models.EF.Product>
 @using WebShoeShop.Common
+<style>
+    .new_arrivals_title {
+        display: flex;
+        align-items: center;
+    }
+    .new_arrivals_title b {
+        background-color: currentColor;
+        display: block;
+        flex: 1;
+        height: 2px;
+        opacity: .1;
+    }
+        .new_arrivals_title span {
+            margin: 0 15px;
+            color: #555;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+</style>
 @if (Model != null && Model.Any())
 {
 
     <div class="best_sellers">
         <div class="container">
-            <div class="row">
-                <div class="col text-center">
-                    <div class="section_title new_arrivals_title">
-                        <h2>Khuyến mãi</h2>
-                    </div>
-                </div>
+              <div class="row">
+            <div class="col text-center">
+              <h3 class="new_arrivals_title">
+                    <b></b>
+                    <span>KHUYẾN MÃI</span>
+                    <b></b>
+                </h3>
             </div>
+        </div>
+            @*<h4 class="font-weight-bold text-center" style="margin-top: 55px; border-top: 3px solid #d3cccc; padding-top: 10px;">KHUYẾN MÃI</h4>*@
             <div class="row">
                 <div class="col">
                     <div class="product_slider_container">
@@ -91,7 +113,7 @@
             </div>
             <div class="row">
                 <div class="col text-center">
-                    <div class="section_title new_arrivals_title">
+                    <div class="new_arrivals_title">
                         <a href="/san-pham" style="border: 1px solid #0000004f; color: #000000a6; border-radius: 3rem; font-size: 0.9rem; padding: 0.3rem 1rem; display: inline-block; ">Xem thêm sản phẩm <i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
