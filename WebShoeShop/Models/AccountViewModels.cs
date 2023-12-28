@@ -49,11 +49,11 @@ namespace WebShoeShop.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Tên đăng nhập không được để trống")]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Mật khẩu không được để trống")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -110,12 +110,12 @@ namespace WebShoeShop.Models
     }
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "Họ và tên là trường bắt buộc.")]
+        [Required(ErrorMessage = "Họ tên không được để trống")]
         [Display(Name = "Họ và tên")]
         public string FullName { get; set; }
 
         [Required(ErrorMessage ="Email không được để trống")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage ="Email không đúng định dạng")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -123,33 +123,33 @@ namespace WebShoeShop.Models
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Mật khẩu không được để trống")]
-        [StringLength(100, ErrorMessage = "Mật khẩu phải dài ít nhất {2}.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Mật khẩu phải dài ít nhất {2} kí tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu không trùng khớp")]
         public string ConfirmPassword { get; set; }
     }
 
     public class ResetPasswordViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage ="Email không được để trống")]
+        [EmailAddress(ErrorMessage ="Email không đúng định dạng")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Mật khẩu không được để trống")]
+        [StringLength(100, ErrorMessage = "Mật khẩu ít nhất {2} kí tự", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu phải trùng khớp")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

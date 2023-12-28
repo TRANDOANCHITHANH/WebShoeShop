@@ -65,11 +65,11 @@ namespace WebShoeShop.Areas.Admin.Controllers
                                 Image = Images[i],
                                 IsDefault = true
                             });
-                            model.ProductSize.Add(new ProductSize
+/*                            model.ProductSize.Add(new ProductSize
                             {
                                 ProductId=model.Id,
                                 Size = Sizes[i],
-                            } );
+                            } );*/
                         }
                         else
                         {
@@ -79,11 +79,11 @@ namespace WebShoeShop.Areas.Admin.Controllers
                                 Image = Images[i],
                                 IsDefault = false
                             });
-                            model.ProductSize.Add(new ProductSize
+                           /* model.ProductSize.Add(new ProductSize
                             {
                                 ProductId = model.Id,
                                 Size = Sizes[i],
-                            });
+                            });*/
                         }
                     }
                 }

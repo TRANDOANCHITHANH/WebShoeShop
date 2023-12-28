@@ -4,69 +4,93 @@
     ViewBag.Title = "Log in";
 }
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
+<style>
+    body {
+        background-color: #f5f7fa;
+    }
 
-<div class="container" style="margin-top:160px">
-    <hr />
-    <h2>Đăng nhập</h2>
-    <div class="row">
-        <div class="col-md-8">
-            <section id="loginForm">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <h4>Sử dụng tài khoản để đăng nhập</h4>
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Tên đăng nhập</label>
-                        @*                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-                        *@                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Mật khẩu</label>
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                <label class="col-md-6 control-label">Ghi nhớ mật khẩu</label>
-                                <label class="col-md-4 control-label">
-                                    @Html.ActionLink("Quên mật khẩu?", "ForgotPassword")
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Đăng nhập" class="btn btn-success" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <label class="col-md-4 control-label">Bạn chưa có tài khoản?</label>
-                            <label class="col-md-4 control-label">
-                                @Html.ActionLink("Đăng kí", "Register")
-                            </label>
-                        </div>
-                    </div>
-                    /*                     Enable this once you have account confirmation enabled for password reset functionality
-                    */
-                }
-            </section>
+    .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        margin-top:160px;
+    }
+
+    .form-title {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-weight:bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .submit-button {
+        text-align: center;
+    }
+
+    .error-message {
+        color: #ff0000;
+        margin-top: 5px;
+    }
+</style>
+
+<div class="form-container">
+    <h2 class="form-title">Đăng nhập</h2>
+
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label class="form-label">Tên đăng nhập</label>
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
         </div>
-   @*     <div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>*@
-    </div>
+
+        <div class="form-group">
+            <label class="form-label">Mật khẩu</label>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                <label class="form-label">Ghi nhớ mật khẩu</label>
+                <label>
+                    @Html.ActionLink("Quên mật khẩu?", "ForgotPassword")
+                </label>
+            </div>
+        </div>
+
+        <div class="submit-button">
+            <input type="submit" value="Đăng nhập" class="btn btn-success" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Bạn chưa có tài khoản?</label>
+            <label>
+                @Html.ActionLink("Đăng kí", "Register")
+            </label>
+        </div>
+
+        if(!ViewData.ModelState.IsValid)
+        {
+            <div class="error-message">
+                Đăng nhập không thành công. Vui lòng kiểm tra lại thông tin đăng nhập.
+            </div>
+        }
+    }
 </div>
 
 
