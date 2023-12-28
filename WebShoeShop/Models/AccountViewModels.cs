@@ -110,14 +110,20 @@ namespace WebShoeShop.Models
     }
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Họ và tên là trường bắt buộc.")]
+        [Display(Name = "Họ và tên")]
+        public string FullName { get; set; }
+
+        [Required(ErrorMessage ="Email không được để trống")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Tên đăng nhập không được để trống")]
         public string UserName { get; set; }
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+
+        [Required(ErrorMessage = "Mật khẩu không được để trống")]
+        [StringLength(100, ErrorMessage = "Mật khẩu phải dài ít nhất {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

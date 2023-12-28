@@ -325,6 +325,9 @@
     <Content Include="Content\assets\images\iconlogo.png" />
     <Content Include="Content\assets\images\image27-removebg.png" />
     <Content Include="Content\assets\images\image5.jpg" />
+    <Content Include="Content\assets\images\logoadmin.png" />
+    <Content Include="Content\assets\images\logonew2.png" />
+    <Content Include="Content\assets\images\logonew_visible.png" />
     <Content Include="Content\assets\images\logoshop.png" />
     <Content Include="Content\assets\images\logoshop_visible.png" />
     <Content Include="Content\assets\images\logostore.png" />
@@ -3465,6 +3468,8 @@
     <Content Include="Views\Wishlist\Index.cshtml" />
     <Content Include="Views\Products\Partial_ProductReleated.cshtml" />
     <Content Include="Views\Account\HistoryOrder.cshtml" />
+    <Content Include="Views\Account\ConfirmtionEmail.cshtml" />
+    <Content Include="Views\Account\EmailConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,6 +7,7 @@
             <tr>
                 <th>Stt</th>
                 <th>Tên sản phẩm</th>
+                <th>Hình ảnh</th>
                 <th>Giá</th>
                 <th>Số lượng</th>
                 <th>Size</th>
@@ -17,10 +18,17 @@
         <tbody>
             @foreach (var item in Model)
             {
+                var CheckImage = item.Product.ProductImage.FirstOrDefault(x => x.IsDefault);
+                var strImg = "";
+                if (CheckImage != null)
+                {
+                    strImg = CheckImage.Image;
+                }
                 <tr>
                     <td>@i</td>
                     <td>@item.Product.Title</td>
-                    <td>@item.Price</td>
+                    <td><img class="imgproduct" data-id="@item.Id" src="@strImg" width="50" /></td>
+                    <td>@WebShoeShop.Common.Common.FormatNumber(item.Price,0)</td>
                     <td>@item.Quantity</td>
                     <td>@item.Size</td>
                     <td>@WebShoeShop.Common.Common.FormatNumber((item.Price * item.Quantity), 0)</td>

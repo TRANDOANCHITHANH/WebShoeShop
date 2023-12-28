@@ -1,7 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Confirm Email";
+    ViewBag.Title = "Xác nhận email";
 }
-<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
 <style>
     .product_section_container {
         margin-top: 180px;
@@ -23,6 +22,7 @@
         max-height: 100%;
     }
 </style>
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
 <div class="container product_section_container">
     <div class="row">
         <div class="col-md-12">
@@ -30,8 +30,9 @@
             <h1 class="title-news">@ViewBag.Title.</h1>
 
             <p>
-                Cảm ơn đã xác nhận. Vui lòng @Html.ActionLink("nhấn để đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                Vui lòng kiểm tra email của bạn để xác nhận
             </p>
         </div>
     </div>
 </div>
+

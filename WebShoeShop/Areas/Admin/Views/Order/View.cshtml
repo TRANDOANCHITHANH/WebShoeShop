@@ -53,28 +53,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Phí giao hàng</label>
-                        @if (Model.TypeShip == 1)
-                        {
-                            <p class="form-control">@WebShoeShop.Common.Common.FormatNumber(0,0) đ</p>
-                        }
-                        else if (Model.TypeShip == 2)
-                        {
-                    <p class="form-control">@WebShoeShop.Common.Common.FormatNumber(70000,0) đ</p>
-                        }
-
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Tổng tiền</label>
-                        <p class="form-control">@WebShoeShop.Common.Common.FormatNumber(Model.TotalAmount, 0) đ</p>
-                    </div>
-                </div>
-            </div>
+            
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -82,8 +61,35 @@
                         <p class="form-control">@Model.Email</p>
                     </div>
                 </div>
- 
                 <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Địa chỉ</label>
+                        <p class="form-control">@Model.Address</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Phí giao hàng</label>
+                        @if (Model.TypeShip == 1)
+                        {
+                            <p class="form-control">@WebShoeShop.Common.Common.FormatNumber(0, 0) đ</p>
+                        }
+                        else if (Model.TypeShip == 2)
+                        {
+                            <p class="form-control">@WebShoeShop.Common.Common.FormatNumber(70000, 0) đ</p>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Tổng tiền</label>
+                        <p class="form-control">@WebShoeShop.Common.Common.FormatNumber(Model.TotalAmount, 0) đ</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Trạng thái</label>
                         <p class="form-control">@(Model.TypePayment == 1 ? "Chưa thanh toán" : "Đã thanh toán")</p>
@@ -92,7 +98,7 @@
                 <div class="col-md-6">
 
                 </div>
-     </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <h2>Danh sách sản phẩm</h2>

@@ -201,19 +201,19 @@ namespace WebShoeShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, FullName = model.FullName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    UserManager.AddToRole(user.Id, "Customer");
+                    
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    WebShoeShop.Common.Common.SendMail("Double 2T-2Q Sneaker", "Xác nhận tài khoản", "Bạn click vào <a href='" + callbackUrl + "'>link này</a> để xác nhận", model.Email);
+                    UserManager.AddToRole(user.Id, "Customer");
+                    return RedirectToAction("EmailConfirmation", "Account");
                 }
                 AddErrors(result);
             }
@@ -234,7 +234,11 @@ namespace WebShoeShop.Controllers
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
-
+        [AllowAnonymous]
+        public ActionResult EmailConfirmation()
+        {
+            return View();
+        }
         //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
